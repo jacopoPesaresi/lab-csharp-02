@@ -145,6 +145,7 @@ namespace OperatorsOverloading
         public static List<TValue> operator -(List<TValue> list1, List<TValue> list2)
         {
             return List.From(list1.ToFlat().Where(x => !list2.ToFlat().Contains(x)));
+            //suggerimento dato in laboratorio implementato con successo!!
         }
 
 
