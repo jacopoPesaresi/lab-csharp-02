@@ -37,7 +37,8 @@ namespace OperatorsOverloading
         /// <param name="enumerable">the array of elements to put on the list.</param>
         /// <returns>a new list with the given elements.</returns>
         public static implicit operator List<TValue>(TValue[] enumerable)
-        { //TODO - posso fare di meglio
+        {
+            /*
             List<TValue> tmp = List.Nil<TValue>();; //List.Nil<>();
             if(enumerable.Length!=0){
                 tmp = List.Of(enumerable[0]);
@@ -47,6 +48,9 @@ namespace OperatorsOverloading
                 }
             }
             return tmp;
+            */
+            return List.From(enumerable.AsEnumerable());
+            //List.From(enumerable);
         }
 
         /// <summary>
@@ -54,10 +58,10 @@ namespace OperatorsOverloading
         /// </summary>
         /// <param name="element">the element to put on the list.</param>
         /// <returns>a new list with only the given element.</returns>
-        public static implicit operator List<TValue>(TValue element)
-        {
+        public static implicit operator List<TValue>(TValue element) =>  List.Of(element);
+        /*{
             return List.Of(element);
-        }
+        }*/
 
         /// <summary>
         /// Converts the given list into a new array explicitly.
@@ -66,7 +70,7 @@ namespace OperatorsOverloading
         /// <returns>an array containing the elements of the list.</returns>
         public static explicit operator TValue[](List<TValue> list)
         {
-            IEnumerable<TValue> en = list.ToFlat();
+            /*IEnumerable<TValue> en = list.ToFlat().ToArray();
             TValue[] tmp = new TValue[list.Length];
             int i=0;
             foreach (TValue val in en) // (int i = 0; i<tmp.Length;i++)
@@ -74,7 +78,8 @@ namespace OperatorsOverloading
                 tmp[i] = val;
                 i++;
             }
-            return tmp;
+            return tmp;*/
+            return list.ToFlat().ToArray();
         }
 
         /// <summary>
@@ -175,7 +180,7 @@ namespace OperatorsOverloading
         /// <returns>the result list.</returns>
         public static List<TValue> operator +(List<TValue> list1, List<TValue> list2)
         {
-            return List.Append<TValue>(list1, list2);
+            return List.Append(list1, list2);
             /*
             //List<TValue> ciao = new List<TValue>();
             IEnumerable<TValue> enume = list1.ToFlat();
@@ -196,6 +201,7 @@ namespace OperatorsOverloading
         /// <returns>the result list.</returns>
         public static List<TValue> operator -(List<TValue> list1, List<TValue> list2)
         {
+            //usa where
             List<TValue> tmp = List.Nil<TValue>();
             IEnumerable<TValue> en1 = list1.ToFlat();
             IEnumerable<TValue> en2 = list2.ToFlat();
@@ -212,6 +218,12 @@ namespace OperatorsOverloading
 
             return tmp;
         }
+
+
+
+
+
+
 
         /// <summary>
         /// Converts this list into a list of lists, which are each one the tail of the previous one.

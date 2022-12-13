@@ -13,10 +13,10 @@ namespace ExtensionMethods
         /// <param name="c1">the first operand.</param>
         /// <param name="c2">the second operand.</param>
         /// <returns>the sum.</returns>
-        public static IComplex Add(this IComplex c1, IComplex c2)
-        {
+        public static IComplex Add(this IComplex c1, IComplex c2) => new Complex(c1.Real+c2.Real, c1.Imaginary+c2.Imaginary);
+        /*{
             return new Complex(c1.Real+c2.Real, c1.Imaginary+c2.Imaginary);
-        }
+        }*/
 
         /// <summary>
         /// Substract <paramref name="c2"/> from <paramref name="c1"/>.

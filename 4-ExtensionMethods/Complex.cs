@@ -20,44 +20,46 @@ namespace ExtensionMethods
         }
 
         /// <inheritdoc cref="IComplex.Real"/>
-        public double Real
-        {
+        public double Real => re;
+        /*{
+            
             get
             {
                 return re;
                 //throw new System.NotImplementedException();
             }
-        }
+            
+        }*/
 
         /// <inheritdoc cref="IComplex.Imaginary"/>
-        public double Imaginary
-        {
+        public double Imaginary => im;
+        /*{
             get
             {
                 return im;
                 //throw new System.NotImplementedException();
             }
-        }
+        }*/
 
         /// <inheritdoc cref="IComplex.Modulus"/>
-        public double Modulus
-        {
+        public double Modulus => Math.Sqrt(Math.Pow(Real,2) + Math.Pow(Imaginary,2));
+        /*{
             get
             {
                 return Math.Sqrt(Math.Pow(Real,2) + Math.Pow(Imaginary,2));
                 //throw new System.NotImplementedException();
             }
-        }
+        }*/
 
         /// <inheritdoc cref="IComplex.Phase"/>
-        public double Phase
-        {
+        public double Phase => Math.Atan2(Imaginary, Real);
+        /*{
             get
             {
                 return Math.Atan2(Imaginary, Real);
                 //throw new System.NotImplementedException();
             }
-        }
+        }*/
 
         /// <inheritdoc cref="IComplex.ToString"/>
         public override string ToString()
