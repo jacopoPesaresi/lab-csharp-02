@@ -21,45 +21,15 @@ namespace ExtensionMethods
 
         /// <inheritdoc cref="IComplex.Real"/>
         public double Real => re;
-        /*{
-            
-            get
-            {
-                return re;
-                //throw new System.NotImplementedException();
-            }
-            
-        }*/
 
         /// <inheritdoc cref="IComplex.Imaginary"/>
         public double Imaginary => im;
-        /*{
-            get
-            {
-                return im;
-                //throw new System.NotImplementedException();
-            }
-        }*/
 
         /// <inheritdoc cref="IComplex.Modulus"/>
         public double Modulus => Math.Sqrt(Math.Pow(Real,2) + Math.Pow(Imaginary,2));
-        /*{
-            get
-            {
-                return Math.Sqrt(Math.Pow(Real,2) + Math.Pow(Imaginary,2));
-                //throw new System.NotImplementedException();
-            }
-        }*/
 
         /// <inheritdoc cref="IComplex.Phase"/>
         public double Phase => Math.Atan2(Imaginary, Real);
-        /*{
-            get
-            {
-                return Math.Atan2(Imaginary, Real);
-                //throw new System.NotImplementedException();
-            }
-        }*/
 
         /// <inheritdoc cref="IComplex.ToString"/>
         public override string ToString()
@@ -90,7 +60,6 @@ namespace ExtensionMethods
         public bool Equals(IComplex other)
         {
             return this.Real.Equals(other.Real) && this.Imaginary.Equals(other.Imaginary);
-            throw new System.NotImplementedException();
         }
 
         /// <inheritdoc cref="object.Equals(object?)"/>
@@ -99,15 +68,12 @@ namespace ExtensionMethods
             if (obj == null) return false;
             if (!(obj is IComplex)) return false;
             return this.Equals((IComplex)obj);
-            // TODO improve
-            //return base.Equals(obj);
         }
 
         /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode()
         {
             return HashCode.Combine(Real, Imaginary);
-            // TODO improve -fato
         }
     }
 }

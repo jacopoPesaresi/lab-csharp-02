@@ -14,9 +14,6 @@ namespace ExtensionMethods
         /// <param name="c2">the second operand.</param>
         /// <returns>the sum.</returns>
         public static IComplex Add(this IComplex c1, IComplex c2) => new Complex(c1.Real+c2.Real, c1.Imaginary+c2.Imaginary);
-        /*{
-            return new Complex(c1.Real+c2.Real, c1.Imaginary+c2.Imaginary);
-        }*/
 
         /// <summary>
         /// Substract <paramref name="c2"/> from <paramref name="c1"/>.
@@ -24,10 +21,8 @@ namespace ExtensionMethods
         /// <param name="c1">the first operand.</param>
         /// <param name="c2">the second operand.</param>
         /// <returns>the difference.</returns>
-        public static IComplex Subtract(this IComplex c1, IComplex c2)
-        {
-            return new Complex(c1.Real-c2.Real, c1.Imaginary-c2.Imaginary);
-        }
+        public static IComplex Subtract(this IComplex c1, IComplex c2) => 
+            new Complex(c1.Real-c2.Real, c1.Imaginary-c2.Imaginary);
 
         /// <summary>
         /// Multiply two complex numbers.
@@ -51,12 +46,9 @@ namespace ExtensionMethods
         public static IComplex Divide(this IComplex c1, IComplex c2)
         {
             double NnewReal = c1.Real*c2.Real + (c1.Imaginary*c2.Imaginary);
-            double Den = Math.Pow(c2.Real,2)+Math.Pow(c2.Imaginary,2);
             double NnewImm = c1.Imaginary*c2.Real - (c1.Real * c2.Imaginary);
-            //double DnewImm = ;
-            //double newImm = c1.Real*c2.Imaginary + c1.Imaginary * c2.Real;
+            double Den = Math.Pow(c2.Real,2)+Math.Pow(c2.Imaginary,2);
             return new Complex(NnewReal/Den,NnewImm/Den);
-            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -70,10 +62,7 @@ namespace ExtensionMethods
         /// </remarks>
         /// <param name="c1">the complex operand.</param>
         /// <returns>the complex conjugate.</returns>
-        public static IComplex Conjugate(this IComplex c1)
-        {
-            return new Complex(c1.Real, c1.Imaginary*-1);
-        }
+        public static IComplex Conjugate(this IComplex c1) => new Complex(c1.Real, c1.Imaginary*-1);
 
         /// <summary>
         /// Get the reciprocal of a complex number.
@@ -86,10 +75,6 @@ namespace ExtensionMethods
         /// </remarks>
         /// <param name="c1">the complex operand.</param>
         /// <returns>the complex reciprocal.</returns>
-        public static IComplex Reciprocal(this IComplex c1)
-        {
-            return ComplexExtensions.Divide(new Complex(1,0), c1);
-            //throw new NotImplementedException();
-        }
+        public static IComplex Reciprocal(this IComplex c1) => ComplexExtensions.Divide(new Complex(1,0), c1);
     }
 }
