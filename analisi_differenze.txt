@@ -1,0 +1,15 @@
+URL https://github.com/jacopoPesaresi/lab-csharp-02.git
+
+CLONE git@github.com:jacopoPesaresi/lab-csharp-02.git
+
+BRANCH master
+
+LAB 1-Collections
+
+LAB 2-Exceptions
+
+LAB 3-OperatorsOverloading
+
+LAB 4-ExtensionMethods
+
+CASA 5-DelegatesAndEvent
