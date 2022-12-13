@@ -144,24 +144,7 @@ namespace OperatorsOverloading
         /// <returns>the result list.</returns>
         public static List<TValue> operator -(List<TValue> list1, List<TValue> list2)
         {
-            return List.From(list1.ToFlat().Where(x => list2.Flatten().Contains(List.Of(x))));
-            //usa where
-            /*
-            List<TValue> tmp = List.Nil<TValue>();
-            IEnumerable<TValue> en1 = list1.ToFlat();
-            IEnumerable<TValue> en2 = list2.ToFlat();
-            bool gate = true;
-            foreach(TValue val1 in en1)
-            {
-                foreach(TValue val2 in en2)
-                {
-                    if(val1.Equals(val2)) gate = false;
-                }
-                if(gate) tmp = List.Append(tmp, List.Of(val1));
-                gate = true;
-            }
-
-            return tmp;*/
+            return List.From(list1.ToFlat().Where(x => !list2.ToFlat().Contains(x)));
         }
 
 
