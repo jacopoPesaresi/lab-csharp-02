@@ -88,7 +88,14 @@ namespace OperatorsOverloading
         /// </returns>
         public static bool operator ==(List<TValue> list1, List<TValue> list2)
         {
-            return list1.Length == list2.Length;
+            TValue[] arr1 = (TValue[]) list1;
+            TValue[] arr2 = (TValue[]) list2;
+            if(list1.Length!=list2.Length) return false;
+            for(int i=0; i< arr1.Length;i++)
+            {
+                if(!Equals(arr1[i],arr2[i])) return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -101,7 +108,7 @@ namespace OperatorsOverloading
         /// </returns>
         public static bool operator !=(List<TValue> list1, List<TValue> list2)
         {
-            return list1.Length != list2.Length;
+            return !(list1==list2);
         }
 
         /// <summary>

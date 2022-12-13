@@ -24,7 +24,8 @@ namespace ExtensionMethods
         {
             get
             {
-                throw new System.NotImplementedException();
+                return re;
+                //throw new System.NotImplementedException();
             }
         }
 
@@ -33,7 +34,8 @@ namespace ExtensionMethods
         {
             get
             {
-                throw new System.NotImplementedException();
+                return im;
+                //throw new System.NotImplementedException();
             }
         }
 
@@ -42,7 +44,8 @@ namespace ExtensionMethods
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Math.Sqrt(Math.Pow(Real,2) + Math.Pow(Imaginary,2));
+                //throw new System.NotImplementedException();
             }
         }
 
@@ -51,35 +54,58 @@ namespace ExtensionMethods
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Math.Atan2(Imaginary, Real);
+                //throw new System.NotImplementedException();
             }
         }
 
         /// <inheritdoc cref="IComplex.ToString"/>
         public override string ToString()
         {
-            // TODO improve
-            return base.ToString();
+            if (Real.Equals(0.0) && Imaginary.Equals(0.0))
+            {
+                return "0";
+            } 
+            else if (Real.Equals(0.0))
+            {
+                return (Imaginary.Equals(1.0) ? "i" : Imaginary.Equals(-1.0) ? "-i" : $"{Imaginary}i");
+            }
+            else if (Imaginary.Equals(0.0))
+            {
+                return $"{Real}";
+            }
+            else
+            {
+                return  $"{Real} " 
+            + ((Imaginary > 0) ? "+ " : "- ") 
+            + ((Imaginary > 0) ? 
+                (Imaginary.Equals(1.0) ? "i" : $"{Imaginary}i") : 
+                (Imaginary.Equals(-1.0) ? "i" : $"{-1*Imaginary}i"));
+            }
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
         public bool Equals(IComplex other)
         {
+            return this.Real.Equals(other.Real) && this.Imaginary.Equals(other.Imaginary);
             throw new System.NotImplementedException();
         }
 
         /// <inheritdoc cref="object.Equals(object?)"/>
         public override bool Equals(object obj)
         {
+            if (obj == null) return false;
+            if (!(obj is IComplex)) return false;
+            return this.Equals((IComplex)obj);
             // TODO improve
-            return base.Equals(obj);
+            //return base.Equals(obj);
         }
 
         /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode()
         {
-            // TODO improve
-            return base.GetHashCode();
+            return HashCode.Combine(Real, Imaginary);
+            // TODO improve -fato
         }
     }
 }
