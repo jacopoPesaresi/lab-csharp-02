@@ -13,3 +13,18 @@ LAB 3-OperatorsOverloading
 LAB 4-ExtensionMethods
 
 CASA 5-DelegatesAndEvent
+In generale non ho previsto una variabile temporanea dove salvarmi il valore vecchio se poi doveva essere modificato/eliminato
+(es vedere la set, o le Remove)
+(e come ho notato dopo non ho fatto un controllo "stile nullable" sugli observers)
+In IEnumerable.GetEnumerator non sapevo bene cosa fare... quindi ho fatto un copia e incolla del metodo sopra... mi sono permesso di modificarlo
+In Add non ho pensato di ricondurmi alla sintassi Nullable
+Ho combinato Remove con la Clear (e come specificato all'inizio non ho previsto copie da passare agli observer)
+(potevo usare di più la sintassi =>, ma vabbè)
+Ho frainteso CopyTo
+Non ho combinato Remove con RemoveAt (e effettivamente potevo fare un controllo più robusto sugli indici, "controllare il -1 della IndexOf" insomma)
+Ho frainteso la Insert, o meglio ne ho sbagliato l'observer
+Sulle ultime 3 funzioni sono rimasto abbastanza fedele alla List, ma effettivamente potevo prevedere una implementazione più robusta
+(e più sensata per Equals, cosa che poi mi sono permesso di modificare)
+[e nel farlo, mi chiedo: scrivendo
+"var tmp = obj as ObservableList<TItem>;"
+se obj non fosse di tipo ObservableList<TItem>, tmp diventa null, giusto?]

@@ -34,25 +34,31 @@ namespace ExtensionMethods
         /// <inheritdoc cref="IComplex.ToString"/>
         public override string ToString()
         {
-            if (Real.Equals(0.0) && Imaginary.Equals(0.0))
+            if (Real.Equals(0.0))
             {
-                return "0";
+                if (Imaginary.Equals(0.0))
+                {
+                    return "0";
+                }
+                else
+                {
+                    return (Imaginary.Equals(1.0) ? "i" : Imaginary.Equals(-1.0) ? "-i" : $"{Imaginary}i");
+                }
             } 
-            else if (Real.Equals(0.0))
+            else 
             {
-                return (Imaginary.Equals(1.0) ? "i" : Imaginary.Equals(-1.0) ? "-i" : $"{Imaginary}i");
-            }
-            else if (Imaginary.Equals(0.0))
-            {
-                return $"{Real}";
-            }
-            else
-            {
-                return  $"{Real} " 
-            + ((Imaginary > 0) ? "+ " : "- ") 
-            + ((Imaginary > 0) ? 
-                (Imaginary.Equals(1.0) ? "i" : $"{Imaginary}i") : 
-                (Imaginary.Equals(-1.0) ? "i" : $"{-1*Imaginary}i"));
+                if (Imaginary.Equals(0.0))
+                {
+                    return $"{Real}";
+                }
+                else
+                {
+                    return  $"{Real} " 
+                    + ((Imaginary > 0) ? "+ " : "- ") 
+                    + ((Imaginary > 0) ? 
+                        (Imaginary.Equals(1.0) ? "i" : $"{Imaginary}i") : 
+                        (Imaginary.Equals(-1.0) ? "i" : $"{-1*Imaginary}i"));
+                }
             }
         }
 

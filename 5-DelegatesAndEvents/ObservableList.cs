@@ -41,10 +41,7 @@ namespace DelegatesAndEvents
         }
 
         /// <inheritdoc cref="IEnumerable.GetEnumerator" />
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return list.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.list).GetEnumerator();
 
         /// <inheritdoc cref="ICollection{T}.Add" />
         public void Add(TItem item)
@@ -92,6 +89,7 @@ namespace DelegatesAndEvents
         {
             ElementChanged.Invoke(this,item,list[index],index);
             list[index] = item;
+
         }
 
         /// <inheritdoc cref="IList{T}.RemoveAt" />
@@ -104,7 +102,11 @@ namespace DelegatesAndEvents
         /// <inheritdoc cref="object.Equals(object?)" />
         public override bool Equals(object obj)
         {
-            return list.Equals(obj);
+            if(obj==null) return false;
+            if(this==obj) return true;
+            var tmp = obj as ObservableList<TItem>;
+            if(tmp==null) return false;
+            return tmp.list.Equals(this.list);
         }
 
         /// <inheritdoc cref="object.GetHashCode" />
